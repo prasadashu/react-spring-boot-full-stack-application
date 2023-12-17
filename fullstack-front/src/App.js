@@ -16,11 +16,19 @@ function App() {
         <Navbar/>
 
         {/* Adding Routes */}
+        {/*
+           Route Endpoints are declared here.
+           A mapping of Endpoint to Component is done here
+           Execution of routing is done via 'Link' tag using 'to="/sampleEndpoint"'
+        */}
+
         <Routes>
+
           {/* Adding route endpoint for Home Component */}
           <Route exact path="/" element={<Home/>}/>
           {/* Adding route endpoint for AddUser Component */}
           <Route exact path="/adduser" element={<AddUser/>}/>
+
         </Routes>
       </Router>
     </div>
