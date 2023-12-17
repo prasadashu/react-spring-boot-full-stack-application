@@ -1,9 +1,11 @@
 package com.commerce.commerceapplication.controller;
 
 import com.commerce.commerceapplication.repository.UserRepository;
+import com.commerce.commerceapplication.model.User;
+import com.commerce.commerceapplication.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.commerce.commerceapplication.model.User;
+
 
 import java.util.List;
 
@@ -33,5 +35,12 @@ public class UserController {
 
         // Return list of all users
         return userRepository.findAll();
+    }
+
+    @GetMapping("/user/{id}")
+    User getUserById(@PathVariable Long id) {
+        // Return user with passed 'id'
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 }
