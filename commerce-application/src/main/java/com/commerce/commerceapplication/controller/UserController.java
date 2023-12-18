@@ -15,9 +15,15 @@ import java.util.List;
 @CrossOrigin
 public class UserController {
 
-    // Inject UserRepository to UserController class
+    // Define variable to store user repository object
+    private final UserRepository userRepository;
+
+    // Define constructor for user repository injection
     @Autowired
-    private UserRepository userRepository;
+    public UserController(UserRepository userRepository) {
+        // Inject UserRepository to UserController class
+        this.userRepository = userRepository;
+    }
 
     @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
