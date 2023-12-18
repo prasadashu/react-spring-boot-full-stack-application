@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './layout/Navbar';
 import Home from './pages/Home';
 import AddUser from './users/AddUser';
+import EditUser from './users/EditUser';
 
 function App() {
   /*
@@ -28,6 +29,8 @@ function App() {
           <Route exact path="/" element={<Home/>}/>
           {/* Adding route endpoint for AddUser Component */}
           <Route exact path="/adduser" element={<AddUser/>}/>
+          {/* Adding route endpoint for EditUser Component */}
+          <Route exact path="/edituser/:id" element={<EditUser/>}></Route>
 
         </Routes>
       </Router>
