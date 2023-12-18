@@ -5,6 +5,7 @@ import Navbar from './layout/Navbar';
 import Home from './pages/Home';
 import AddUser from './users/AddUser';
 import EditUser from './users/EditUser';
+import ViewUser from './users/ViewUser';
 
 function App() {
   /*
@@ -30,7 +31,9 @@ function App() {
           {/* Adding route endpoint for AddUser Component */}
           <Route exact path="/adduser" element={<AddUser/>}/>
           {/* Adding route endpoint for EditUser Component */}
-          <Route exact path="/edituser/:id" element={<EditUser/>}></Route>
+          <Route exact path="/edituser/:id" element={<EditUser/>}/>
+          {/* Adding route endpoint for ViewUser Component */}
+          <Route exact path="/viewuser/:id" element={<ViewUser/>}/>
 
         </Routes>
       </Router>

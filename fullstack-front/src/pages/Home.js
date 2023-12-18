@@ -12,6 +12,12 @@ export default function Home() {
         setUsers(result.data);
     };
 
+    // Define function to delete user data using Spring Boot API
+    const deleteUser = async(id) => {
+        await axios.delete(`http://localhost:8080/user/${id}`);
+        loadUsers();
+    };
+
     // Call the 'useEffect' Hook
     useEffect(() => {
         // Call the load users function
@@ -42,9 +48,9 @@ export default function Home() {
                                 <td>{user.username}</td>
                                 <td>{user.email}</td>
                                 <td>
-                                    <button className="btn btn-primary mx-2">View</button>
+                                    <Link className="btn btn-primary mx-2" to={`/viewuser/${user.id}`}>View</Link>
                                     <Link className="btn btn-outline-primary mx-2" to={`/edituser/${user.id}`}>Edit</Link>
-                                    <button className="btn btn-danger mx-2">Delete</button>
+                                    <button className="btn btn-danger mx-2" onClick={() => deleteUser(user.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))
