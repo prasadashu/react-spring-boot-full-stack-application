@@ -4,7 +4,14 @@ import axios from 'axios'
 
 export default function Home() {
     // Define variable and state function using 'useState' Hook
-    const [users,setUsers] = useState([]);
+    const [users,setUsers] = useState({
+        "users": [],
+        "pageNo": "",
+        "pageSize": "",
+        "totalElements": "",
+        "totalPages": "",
+        "last": ""
+    });
 
     // Define async function to load user data from Spring Boot API
     const loadUsers = async() => {
@@ -41,7 +48,7 @@ export default function Home() {
                 <tbody>
                     {/* Creating Map to dump data fetched from Database */}
                     {
-                        users.map((user, index) => (
+                        users.users.map((user, index) => (
                             <tr>
                                 <th scope="row" key={index}>{index + 1}</th>
                                 <td>{user.name}</td>

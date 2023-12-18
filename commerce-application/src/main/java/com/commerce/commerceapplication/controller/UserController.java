@@ -1,16 +1,14 @@
 package com.commerce.commerceapplication.controller;
 
+import com.commerce.commerceapplication.dto.UserResponse;
 import com.commerce.commerceapplication.repository.UserRepository;
 import com.commerce.commerceapplication.model.User;
 import com.commerce.commerceapplication.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -39,15 +37,30 @@ public class UserController {
 
     @GetMapping("/users")
     @ResponseStatus(HttpStatus.OK)
-    List<User> getAllUsers(Pageable pageable) {
+    UserResponse getAllUsers(Pageable pageable) {
         /*
         Function to GET all users
         - Pageable functionality included to get subset of data
-        - Sample URL to access pageable data -> "http://localhost:8080/api/v1/users?page=0&size=2"
+        - Example URL to access pageable data -> "http://localhost:8080/api/v1/users?page=0&size=2"
         - Provide parameters to API URL "page" and "size"
+        - Pageable response also has metadata for page
          */
+        // Declare a Map to store "user" information
+        UserResponse response = new UserResponse();
+
+        // Retrieve a page of users
+        Page<User> userPage = userRepository.findAll(pageable);
+
+        // Populate HashMap with required user details
+        response.setUsers(userPage.getContent());
+        response.setPageNo(userPage.getNumber());
+        response.setPageSize(userPage.getSize());
+        response.setTotalElements(userPage.getTotalElements());
+        response.setTotalPages(userPage.getTotalPages());
+        response.setLast(userPage.isLast());
+
         // Return list of all users
-        return userRepository.findAll(pageable).getContent();
+        return response;
     }
 
     @GetMapping("/user/{id}")
