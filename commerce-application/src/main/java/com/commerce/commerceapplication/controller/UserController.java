@@ -22,7 +22,6 @@ public class UserController {
         /*
         Function to POST data to the database
          */
-
         // Return from function saving data to database
         return userRepository.save(newUser);
     }
@@ -32,13 +31,15 @@ public class UserController {
         /*
         Function to GET all users
          */
-
         // Return list of all users
         return userRepository.findAll();
     }
 
     @GetMapping("/user/{id}")
     User getUserById(@PathVariable Long id) {
+        /*
+            Function to get user details based on user ID
+         */
         // Return user with passed 'id'
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
@@ -49,7 +50,6 @@ public class UserController {
         /*
             Function to update user based on user ID
          */
-
         // Return from function while updating user information based on user ID
         return userRepository.findById(id)
                 .map(user -> {
