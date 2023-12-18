@@ -4,12 +4,14 @@ import com.commerce.commerceapplication.repository.UserRepository;
 import com.commerce.commerceapplication.model.User;
 import com.commerce.commerceapplication.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1")
 @CrossOrigin
 public class UserController {
 
@@ -18,6 +20,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/user")
+    @ResponseStatus(HttpStatus.CREATED)
     User newUser(@RequestBody User newUser) {
         /*
         Function to POST data to the database
@@ -27,6 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
+    @ResponseStatus(HttpStatus.OK)
     List<User> getAllUsers() {
         /*
         Function to GET all users
@@ -36,6 +40,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
+    @ResponseStatus(HttpStatus.OK)
     User getUserById(@PathVariable Long id) {
         /*
             Function to get user details based on user ID
@@ -46,6 +51,7 @@ public class UserController {
     }
 
     @PutMapping("/user/{id}")
+    @ResponseStatus(HttpStatus.OK)
     User updateUserById(@RequestBody User newUser, @PathVariable Long id) {
         /*
             Function to update user based on user ID
@@ -65,6 +71,7 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{id}")
+    @ResponseStatus(HttpStatus.OK)
     String deleteUserById(@PathVariable Long id) {
         /*
             Function to delete user based on user ID
