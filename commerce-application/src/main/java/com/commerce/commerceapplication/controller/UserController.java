@@ -4,6 +4,8 @@ import com.commerce.commerceapplication.repository.UserRepository;
 import com.commerce.commerceapplication.model.User;
 import com.commerce.commerceapplication.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,12 +39,15 @@ public class UserController {
 
     @GetMapping("/users")
     @ResponseStatus(HttpStatus.OK)
-    List<User> getAllUsers() {
+    List<User> getAllUsers(Pageable pageable) {
         /*
         Function to GET all users
+        - Pageable functionality included to get subset of data
+        - Sample URL to access pageable data -> "http://localhost:8080/api/v1/users?page=0&size=2"
+        - Provide parameters to API URL "page" and "size"
          */
         // Return list of all users
-        return userRepository.findAll();
+        return userRepository.findAll(pageable).getContent();
     }
 
     @GetMapping("/user/{id}")
