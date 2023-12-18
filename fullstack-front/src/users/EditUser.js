@@ -32,14 +32,14 @@ export default function EditUser() {
         // Prevent the form from posting information to URL as paramters
         e.preventDefault();
         // Post 'user' information to POST URL
-        await axios.put(`http://localhost:8080/user/${id}`, user);
+        await axios.put(`http://localhost:8080/api/v1/user/${id}`, user);
         // Navigate to Home page once user data is submitted
         navigate("/")
     };
 
     // Define function to load data for a particular user id when page loads
     const loadUser = async() => {
-        const result = await axios.get(`http://localhost:8080/user/${id}`);
+        const result = await axios.get(`http://localhost:8080/api/v1/user/${id}`);
         setUser(result.data);
     }
 

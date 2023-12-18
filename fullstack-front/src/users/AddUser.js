@@ -29,7 +29,7 @@ export default function AddUser() {
         // Prevent the form from posting information to URL as paramters
         e.preventDefault();
         // Post 'user' information to POST URL
-        await axios.post("http://localhost:8080/user", user);
+        await axios.post("http://localhost:8080/api/v1/user", user);
         // Navigate to Home page once user data is submitted
         navigate("/")
     };

@@ -8,13 +8,13 @@ export default function Home() {
 
     // Define async function to load user data from Spring Boot API
     const loadUsers = async() => {
-        const result = await axios.get("http://localhost:8080/users");
+        const result = await axios.get("http://localhost:8080/api/v1/users");
         setUsers(result.data);
     };
 
     // Define function to delete user data using Spring Boot API
     const deleteUser = async(id) => {
-        await axios.delete(`http://localhost:8080/user/${id}`);
+        await axios.delete(`http://localhost:8080/api/v1/user/${id}`);
         loadUsers();
     };
 

@@ -16,7 +16,7 @@ export default function ViewUser() {
     // Define function to get user details based on user ID
     const loadUser = async(e) => {
         // Get user details and store in result
-        const result = await axios.get(`http://localhost:8080/user/${id}`);
+        const result = await axios.get(`http://localhost:8080/api/v1/user/${id}`);
         // Set user details in page based on data obtained in 'result' variable
         setUser(result.data);
     };
